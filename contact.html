@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<link rel="icon" type="image/png" href="/favicon.png">
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+<html>
+  <head>
+    <title>Decisively - Simplify Analytics &amp; Decision Making</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Roboto:400,700,900|Roboto+Condensed:400,700|Roboto+Slab:400,300,700" rel="stylesheet" type="text/css">
+    <script src="./javascripts/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./javascripts/carousel.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="./stylesheets/home.css" />
+    <script>
+      createMail = function () {
+        var fn = $('#in_fullname').val().trim();
+        var cn = $('#in_companyname').val().trim();
+        var error = false;
+
+        if (fn.length < 6) {
+          $('#in_fullname').addClass("error");
+          error = true;
+        } else {
+          $('#in_fullname').removeClass("error");
+        }
+
+        if (cn.length < 3) {
+          $('#in_companyname').addClass("error");
+          error = true;
+        } else {
+          $('#in_companyname').removeClass("error");
+        }
+
+        if (error) return;
+
+        var href = "mailto:service@decisive.ly?subject="+encodeURIComponent("Request for Decisively Services");
+        href += "&body="+encodeURIComponent("Hi,\n\nI wish to explore Decisively Service Framework..\n\nI am working with "  + cn);
+        href += encodeURIComponent(".\n\nKey challenges faced by us are outlined below for your reference:\n\n1.\n2.\n\n\nWould appreciate an early response");
+        href += encodeURIComponent(".\n\nThanks, \n\n" + fn);
+        $('#in_fullname').val('');
+        $('#in_companyname').val('');
+        window.location.assign(href);
+      }
+    </script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-47082559-1', 'decisive.ly');
+  ga('send', 'pageview');
+
+</script>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="wrapper">
+        <a href="./index.html">
+          <img src="./images/logo_invert.png" alt="Decisively from GRAYPE" id="logo"/>
+        </a>
+        <nav>
+          <ul>
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./about.html">About Us</a></li>
+            <li><a href="./contact.html">Conact</a></li>
+<!--            <li><a href="/login">Login</a></li> -->
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <div class="wrapper">
+
+      <section class="span70">
+        <h2>Contact</h2>
+      </section>
+
+      <section id="request">
+        <h3>Its time to make a decisive move!</h3>
+        <p>Share your decision-making challenge or raw data and we'll come back to you in 24 hours with a meaningful insight.</p>
+        <form autocomplete="on" action="javascript:createMail()">
+          <input type="text" value="" placeholder="Fullname (Minimum 6 chars)" id="in_fullname" />
+          <input type="text" value="" placeholder="Company (Minimum 3 chars)" id="in_companyname" />
+<!--          <input type="text" value="" placeholder="Email" id="in_email"/> -->
+          <input type="submit" value="Continue &rarr;" />
+        </form>
+      </section>
+
+
+    </div>
+
+    <div class="clear">&nbsp;</div>
+<div class="minh"></div>
+    <footer>
+      <div class="wrapper">
+
+        <section id="copyright">
+          <p id="small_links">
+            <a href="terms.html">Terms of Use</a> | <a href="privacy.html">Privacy Policy</a> | <a href="about.html">About Us</a><br />
+            &copy; GRAYPE Systems (P) Limited
+          </p>
+        </section>
+
+        <div class="clear">&nbsp;</div>
+      </div>
+    </footer>
+    <script type="text/javascript">
+  $(document).ready(function(){
+  $("#carousel").carousel(".caption h2", 5000);
+  })
+</script>
+  </body>
+</html>
