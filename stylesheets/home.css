@@ -6,6 +6,7 @@ body{
 
 a{
     color: #772878;
+    font-weight: 900;
 }
 
 .clear{
@@ -17,18 +18,34 @@ a{
 .wrapper{
     margin: 0 auto;
     padding: 0;
-    width: 960px;
+    width: 1000px;
+    margin-top: 30px;
+}
+
+.wrapper2{
+ /*   margin: 0 auto; */
+    padding: 0;
+    width: 700px;
+}
+
+.section{
+    margin-bottom: 50px;
+}
+
+.graphics{
+    margin-top: 80px;
+    margin-bottom: 250px;
 }
 
 header{
-    background: #f5f5f5;
-    border-bottom: 1px solid #eee;
-    border-top: 2px solid #772878;
+/*    background: #f5f5f5; */
+/*    border-bottom: 1px solid #eee; */
+    border-top: 4px solid #772878;
 }
 
 header nav{
     float: right;
-    margin-top: 35px;
+    margin-top: 20px;
 }
 
 header ul{
@@ -48,14 +65,16 @@ a img{
 }
 
 header ul li a{
-    color: #000;
+    color: #aaa;
     text-decoration: none;
-    font-size: 17px;
-    font-family: 'Roboto Slab', 'Helvetica', 'Arial', sans-serif;
+    font-size: 14px;
+    font-family: 'ff-tisa-sans-web-pro', serif;
     font-weight: 500;
     border-bottom: 0px solid #f5f5f5;
     padding-bottom: 0;
+    text-transform: uppercase;
     padding-bottom: 10px;
+    letter-spacing: 0.02em;
     transition: all 0.2s ease-in;
 }
 
@@ -77,37 +96,40 @@ header ul li a:hover{
 }
 
 #hero{
-    background: #772878;
     margin: 0;
     padding: 0;
-    color: #fff;
     padding: 60px 0 60px 0;
+
 }
 
 #hero h1{
     margin: 0;
+    margin-bottom: -5px;
+    margin-top: 30px;
     padding: 0;
-
-    font: 36px 'Roboto', 'Helvetica', 'Arial', sans-serif;
-    line-height: 70px;
+    font: 21px 'ff-tisa-sans-web-pro', serif;
     font-weight: 900;
-    text-align: center;
-    letter-spacing: 1.5px;
+    text-align: left;
+    color: #222;
 }
 
 
 #hero p{
     margin: 0;
+    margin-bottom: 0px;
     padding: 0;
-    text-align: center;
-    font-family: 'Roboto Slab', 'Helvetica', 'Arial', sans-serif;
+    text-align: left;
+    font-family: 'ff-tisa-sans-web-pro', sans-serif;
+    color: #222;
     padding-top: 10px;
     font-size: 18px;
-    line-height: 24px;
+    line-height: 28px;
 }
 
 #hero img{
-    box-shadow: 0 5px 12px #ddd;
+    float: left;
+    margin-left: 30px;
+    margin-right: 50px;
 }
 
 #carousel{
@@ -173,7 +195,7 @@ header ul li a:hover{
 }
 
 .span70h p{
-    text-align:center;
+    text-align:left;
     margin: auto;
     width: 660px;
     font-size: 16px;
@@ -331,12 +353,11 @@ footer {
     margin: 0;
     padding: 0;
     background: #f5f5f5;
-    border-top: 1px solid #eee;
 }
 
 footer p{
-    font-family: 'Roboto Slab', 'Georgia', 'Times', serif;
-    font-size: 11px;
+    font-family: 'ff-tisa-sans-web-pro', serif;
+    font-size: 14px;
     color: #666;
 }
 
