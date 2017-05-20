@@ -10,40 +10,7 @@
   <head>
     <title>Decisively - Simplify Analytics &amp; Decision Making</title>
 
-    <link href="http://fonts.googleapis.com/css?family=Roboto:400,700,900|Roboto+Condensed:400,700|Roboto+Slab:400,300,700" rel="stylesheet" type="text/css">
-    <script src="./javascripts/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="./javascripts/carousel.js" type="text/javascript" charset="utf-8"></script>
     <link rel="stylesheet" type="text/css" href="./stylesheets/home.css" />
-    <script>
-      createMail = function () {
-        var fn = $('#in_fullname').val().trim();
-        var cn = $('#in_companyname').val().trim();
-        var error = false;
-
-        if (fn.length < 6) {
-          $('#in_fullname').addClass("error");
-          error = true;
-        } else {
-          $('#in_fullname').removeClass("error");
-        }
-
-        if (cn.length < 3) {
-          $('#in_companyname').addClass("error");
-          error = true;
-        } else {
-          $('#in_companyname').removeClass("error");
-        }
-
-        if (error) return;
-
-        var href = "mailto:invite4@decisive.ly?subject="+encodeURIComponent("Request for Decisively Beta Trial");
-        href += "&body="+encodeURIComponent("Hi,\n\nI would like to  request for a decisively beta version trial.\n\nI am working with "  + cn);
-        href += encodeURIComponent(".\n\nThanks, \n\n" + fn);
-        $('#in_fullname').val('');
-        $('#in_companyname').val('');
-        window.location.assign(href);
-      }
-    </script>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -94,7 +61,7 @@
           </div>
           </div>
 
-      <div class="graphics">    
+      <div class="graphics">
 
         <img src="./images/graphic2.png" alt="Decisively from GRAYPE" style="width: 300px;"/>
         <img src="./images/graphic1.png" alt="Decisively from GRAYPE" style="width: 400px;"/>
@@ -103,11 +70,11 @@
 
 <div class="clear">&nbsp;</div>
 <div class="clear">&nbsp;</div>
-          
+
           <div class="wrapper">
           <div class="wrapper2">
           <div class="section">
-         
+
 
         <h1>Introducing Decisively and Wink</h1>
 
@@ -116,15 +83,15 @@
         </p>
 
         <p>
-          Within the Decisively framework, we have designed a family of Machine Learning NPM packages, called <a>Wink</a>. Utilities in Wink can be used independently or combined with others to create powerful solutions for an endless number of problems. 
-       
+          Within the Decisively framework, we have designed a family of Machine Learning NPM packages, called <a>Wink</a>. Utilities in Wink can be used independently or combined with others to create powerful solutions for an endless number of problems.
+
         </p>
 
       </div>
 
 
                     <div class="section">
-         
+
 
         <h1>Meet the team</h1>
 
@@ -133,15 +100,15 @@
 
         <img src="./images/rachna.png" alt="Decisively from GRAYPE" style="width: 70px; float: left; margin: 0; margin-right: 20px; margin-top: 15px;"/>
         <p>
-          Rachna (<a>@R4CHN4</a>), an expert in software project management and quality assurance, is pursuing her interest in processes and quality at GrayPE. 
-       
+          Rachna (<a>@R4CHN4</a>), an expert in software project management and quality assurance, is pursuing her interest in processes and quality at GrayPE.
+
         </p>
 
         <div class="clear">&nbsp;</div>
 
         <img src="./images/sks.png" alt="Decisively from GRAYPE" style="width: 70px; float: left; margin: 0; margin-right: 20px; margin-top:17px "/>
         <p>
-          Sanjaya (<a>@sanjayaksaxena</a>) has been a leading creative thinker in the software industry for over to two and a half decades. His areas of interest include process excellence, quality, and information security. 
+          Sanjaya (<a>@sanjayaksaxena</a>) has been a leading creative thinker in the software industry for over to two and a half decades. His areas of interest include process excellence, quality, and information security.
         </p>
 
       </div>
@@ -154,7 +121,7 @@
 
     <div class="wrapper">
       <section class="span70h">
-        
+
 
       </section>
     </div>
