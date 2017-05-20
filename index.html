@@ -9,7 +9,8 @@
 	<title>GrayPE - Simplifying decision making for everyone</title>
 
 	<link rel="icon" type="image/png" href="/favicon.png">
-	<link rel="stylesheet" type="text/css" href="./stylesheets/home.css" />
+	<link rel="stylesheet" type="text/css" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="./stylesheets/master.css" />
 
 	<script>
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -26,13 +27,15 @@
 
 <body>
 
-<header>
-	<div class="wrapper">
-		<a href="./index.html">
-			<img src="./images/logo_invert.png" alt="Decisively from GRAYPE" id="logo"/>
-		</a>
+<header class="container">
+	<div class="row">
+		<div class="col-md-3 col-md-offset-1">
+			<a href="./index.html">
+				<img src="./images/logo_invert.png" alt="Decisively from GRAYPE" id="logo"/>
+			</a>
+		</div>
 
-		<nav>
+		<nav class="col-md-4 col-md-offset-3">
 			<ul>
 				<li><a href="./about.html">Decisively</a></li>
 				<li><a href="./contact.html">Team</a></li>
@@ -42,62 +45,50 @@
 	</div>
 </header>
 
-<section id="hero">
-	<div class="wrapper">
-		<div class="wrapper2">
-			<div class="section">
-				<h1>Simplifying decision making for everyone</h1>
-				<p>Since 2009, Graype Systems has been dedicated to simplifying decision making  by eliminating the road blocks faced by users in effectively applying formal analytical techniques. We have designed tools and services that have simplified decision making across industries like automobiles, human resources, agriculture and agile software. We work with [insert name of technologies], and along with decision sciences, offer niche consulting about the Internet of Things.</p>
-			</div>
+<main class="container"	>
+	<div class="row">
+		<section class="col-md-7 col-md-offset-1">
+			<h1>Simplifying decision making for everyone</h1>
+			<p>Since 2009, Graype Systems has been dedicated to simplifying decision making  by eliminating the road blocks faced by users in effectively applying formal analytical techniques. We have designed tools and services that have simplified decision making across industries like automobiles, human resources, agriculture and agile software. We work with [insert name of technologies], and along with decision sciences, offer niche consulting about the Internet of Things.</p>
+		</section>
+
+		<section class="graphics col-md-12">
+			<img src="./images/graphic2.png" alt="Decisively from GRAYPE" style="width: 300px;"/>
+			<img src="./images/graphic1.png" alt="Decisively from GRAYPE" style="width: 400px;"/>
 		</div>
+
+		<section class="col-md-7 col-md-offset-1">
+			<h1>Introducing Decisively and Wink</h1>
+			<p>Our open source tool, <a>Decisively</a>, simplifies analytics and decision making. It has gained recognition from the international community: our research papers about Decisively were selected for presentation at the 22nd IEEE Requirements Engineering Conference held at Karlskrona, Sweden in 2014, and the 24th Subjective Probability, Utility, and Decision Making (SPUDM) Conference at IESE Business School, Barcelona in 2013.</p>
+
+			<p>Within the Decisively framework, we have designed a family of Machine Learning NPM packages, called <a>Wink</a>. Utilities in Wink can be used independently or combined with others to create powerful solutions for an endless number of problems.</p>
+		</section>
+
+		<section class="col-md-7 col-md-offset-1">
+			<h1>Meet the team</h1>
+
+			<img src="./images/rachna.png" alt="Decisively from GRAYPE" style="width: 70px; float: left; margin: 0; margin-right: 20px; margin-top: 15px;"/>
+			<p>Rachna (<a>@R4CHN4</a>), an expert in software project management and quality assurance, is pursuing her interest in processes and quality at GrayPE.</p>
+
+
+			<img src="./images/sks.png" alt="Decisively from GRAYPE" style="width: 70px; float: left; margin: 0; margin-right: 20px; margin-top:17px "/>
+			<p>Sanjaya (<a>@sanjayaksaxena</a>) has been a leading creative thinker in the software industry for over to two and a half decades. His areas of interest include process excellence, quality, and information security.</p>
+		</section>
 	</div>
-
-	<div class="graphics">
-		<img src="./images/graphic2.png" alt="Decisively from GRAYPE" style="width: 300px;"/>
-		<img src="./images/graphic1.png" alt="Decisively from GRAYPE" style="width: 400px;"/>
-	</div>
-
-	<div class="clear">&nbsp;</div>
-	<div class="clear">&nbsp;</div>
-
-	<div class="wrapper">
-		<div class="wrapper2">
-			<div class="section">
-				<h1>Introducing Decisively and Wink</h1>
-				<p>Our open source tool, <a>Decisively</a>, simplifies analytics and decision making. It has gained recognition from the international community: our research papers about Decisively were selected for presentation at the 22nd IEEE Requirements Engineering Conference held at Karlskrona, Sweden in 2014, and the 24th Subjective Probability, Utility, and Decision Making (SPUDM) Conference at IESE Business School, Barcelona in 2013.</p>
-
-				<p>Within the Decisively framework, we have designed a family of Machine Learning NPM packages, called <a>Wink</a>. Utilities in Wink can be used independently or combined with others to create powerful solutions for an endless number of problems.</p>
-			</div>
-
-			<div class="section">
-				<h1>Meet the team</h1>
-
-				<div class="clear">&nbsp;</div>
-
-
-				<img src="./images/rachna.png" alt="Decisively from GRAYPE" style="width: 70px; float: left; margin: 0; margin-right: 20px; margin-top: 15px;"/>
-				<p>Rachna (<a>@R4CHN4</a>), an expert in software project management and quality assurance, is pursuing her interest in processes and quality at GrayPE.</p>
-
-				<div class="clear">&nbsp;</div>
-
-				<img src="./images/sks.png" alt="Decisively from GRAYPE" style="width: 70px; float: left; margin: 0; margin-right: 20px; margin-top:17px "/>
-				<p>Sanjaya (<a>@sanjayaksaxena</a>) has been a leading creative thinker in the software industry for over to two and a half decades. His areas of interest include process excellence, quality, and information security.</p>
-			</div>
-		</div>
-	</div>
-</section>
+</main>
 
 <footer>
-	<div class="wrapper">
-		<section id="copyright">
-			<p id="small_links">
-				<a href="terms.html">Terms of Use</a> |
-				<a href="privacy.html">Privacy Policy</a>
-				<br />
-				&copy; GRAYPE Systems (P) Limited
-			</p>
-		</section>
-		<div class="clear">&nbsp;</div>
+	<div class="container">
+		<div class="row">
+			<section class="col-md-10 col-md-offset-1">
+				<p>
+					<a href="terms.html">Terms of Use</a> |
+					<a href="privacy.html">Privacy Policy</a>
+					<br />
+					&copy; GRAYPE Systems (P) Limited
+				</p>
+			</section>
+		</div>
 	</div>
 </footer>
 
