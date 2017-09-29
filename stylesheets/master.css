@@ -22,18 +22,13 @@ header {
 }
 
 main {
-	margin-top: 75px;
-	margin-bottom: 60px;
-}
-
-main section {
-	margin-bottom: 20px;
+	margin: 30px 0;
+	padding: 30px 0;
 }
 
 main h1 {
 	margin: 0;
 	margin-bottom: 15px;
-	margin-top: 30px;
 	padding: 0;
 	font: 21px 'ff-tisa-sans-web-pro', serif;
 	font-weight: 900;
@@ -51,17 +46,6 @@ main p {
 	padding-top: 10px;
 	font-size: 18px;
 	line-height: 28px;
-}
-
-p#contact {
-	margin-top: 30px;
-	font-size: 1.5em;
-}
-
-p#contact a {
-	color: #000;
-	font-weight: normal;
-	text-decoration: underline
 }
 
 section.products img {
@@ -102,9 +86,27 @@ section.customers img:hover {
 	-webkit-filter: grayscale(0%);
 }
 
+div.graybg {
+	background: #fafafa;
+	margin: 0;
+}
+
+p#contact {
+	margin-top: 30px;
+	font-size: 1.5em;
+}
+
+p#contact a {
+	color: #000;
+	font-weight: normal;
+	text-decoration: underline
+}
+
+
 footer {
 	background-color: #772878;
-	margin-top: 30px;
+	margin: 0;
+	margin-top: -30px;
 	min-height: 60px;
 	font-size: 14px;
 	color: #fff;
