@@ -32,17 +32,13 @@ main section {
 
 main h1 {
 	margin: 0;
-	margin-bottom: -5px;
+	margin-bottom: 15px;
 	margin-top: 30px;
 	padding: 0;
 	font: 21px 'ff-tisa-sans-web-pro', serif;
 	font-weight: 900;
 	text-align: left;
 	color: #222;
-}
-
-main h1#team {
-	margin-bottom: 0;
 }
 
 main p {
@@ -55,6 +51,37 @@ main p {
 	padding-top: 10px;
 	font-size: 18px;
 	line-height: 28px;
+}
+
+p#contact {
+	margin-top: 30px;
+	font-size: 1.5em;
+}
+
+p#contact a {
+	color: #000;
+	font-weight: normal;
+	text-decoration: underline
+}
+
+section.products img {
+	max-width: 80%;
+	max-height: 200px;
+	margin: 0 auto;
+	display: block;
+}
+
+section.products img.decisively {
+	margin-top: 90px;
+}
+
+section.products > div.row {
+	padding-bottom: 20px;
+	border-bottom: 1px dotted #ccc;
+}
+
+section.products > div.row div:last-child{
+	border-left: 1px dotted #ccc;
 }
 
 section.customers {
