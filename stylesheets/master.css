@@ -91,7 +91,20 @@ div.graybg {
 	margin: 0;
 }
 
+section.team img {
+	width: 70px;
+	float: left;
+	margin: 0;
+	margin-right: 20px;
+	margin-top: 15px;
+}
+
+section.team p {
+	margin-left: 100px;
+}
+
 p#contact {
+	margin: 0;
 	margin-top: 30px;
 	font-size: 1.5em;
 }
