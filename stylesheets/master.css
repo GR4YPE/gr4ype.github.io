@@ -46,6 +46,10 @@ main h1 {
 	color: #222;
 }
 
+main h1.customers {
+  margin-bottom: -5px;
+}
+
 main p {
 	margin: 0;
 	margin-bottom: 0px;
