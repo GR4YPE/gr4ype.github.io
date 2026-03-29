@@ -1,156 +1,752 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-	<meta http-equiv="Content-Security-Policy" content="default-src 'self'">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Graype — Open-source decision science tools</title>
+<meta name="description" content="A 2¼-person studio building open-source decision science tools — funded by niche consulting, driven by curiosity. Authors of winkNLP and winkComposer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-	<title>GRAYPE - Quantitative Analysis &amp; Decision Science</title>
+  :root {
+    --bg:           #0e0d16;
+    --bg2:          #15131f;
+    --bg3:          #1c1929;
+    --border:       rgba(255,255,255,0.07);
+    --grape:        #703C89;
+    --grape-light:  #9B6BB3;
+    --grape-dark:   #5C3170;
+    --grape-glow:   rgba(112,60,137,0.18);
+    --cream:        #f0ece0;
+    --muted:        #b0acbf;
+    --faint:        #44415a;
+    --serif:        'Cormorant Garamond', Georgia, serif;
+    --sans:         'DM Sans', system-ui, sans-serif;
+  }
 
-	<link rel="icon" type="image/png" href="favicon.png">
-	<link rel="stylesheet" type="text/css" href="stylesheets/bootstrap.min.css" />
-	<link rel="stylesheet" type="text/css" href="stylesheets/master.css" />
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--cream);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.75;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+  }
 
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-47082559-1"></script>
-	<script>
-	  window.dataLayer = window.dataLayer || [];
-	  function gtag(){dataLayer.push(arguments);}
-	  gtag('js', new Date());
+  /* ── NAV ─────────────────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 3rem;
+    background: rgba(14,13,22,0.88);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 0.65rem;
+    text-decoration: none;
+  }
+  .nav-logo-icon     { height: 30px; width: auto; flex-shrink: 0; display: block; }
+  .nav-logo-wordmark { height: 16px; width: auto; flex-shrink: 0; display: block; }
+  .nav-links {
+    display: flex; align-items: center; gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.875rem; font-weight: 400; color: var(--muted);
+    text-decoration: none; letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--cream); }
+  .nav-cta {
+    font-size: 0.8rem !important; font-weight: 500 !important;
+    padding: 0.45rem 1.2rem;
+    border: 1px solid var(--grape) !important;
+    border-radius: 2px; color: var(--grape-light) !important;
+    transition: background 0.2s, color 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--grape) !important; color: var(--cream) !important; }
 
-	  gtag('config', 'UA-47082559-1');
-	</script>
-	<script src="https://use.typekit.net/cwc1qce.js"></script>
-	<script>try{Typekit.load({ async: true });}catch(e){}</script>
+  /* ── SECTIONS ────────────────────────────────── */
+  section { padding: 7rem 3rem; }
+  .container { max-width: 1020px; margin: 0 auto; }
+
+  /* ── HERO ────────────────────────────────────── */
+  #hero {
+    padding: 14rem 3rem 8rem;
+    border-bottom: 1px solid var(--border);
+    position: relative; overflow: hidden;
+  }
+  #hero::before {
+    content: '';
+    position: absolute;
+    width: 700px; height: 700px; border-radius: 50%;
+    background: radial-gradient(ellipse at center, var(--grape-glow) 0%, transparent 70%);
+    top: -220px; right: -120px; pointer-events: none;
+  }
+  .hero-kicker {
+    font-size: 0.7rem; font-weight: 500; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--grape-light);
+    margin-bottom: 1.75rem;
+  }
+  h1 {
+    font-family: var(--serif); font-size: clamp(2.8rem, 5.5vw, 5rem);
+    font-weight: 500; line-height: 1.08; letter-spacing: -0.01em;
+    color: var(--cream); max-width: 820px; margin-bottom: 1.75rem;
+  }
+  h1 em { font-style: italic; color: var(--grape-light); }
+  .hero-sub {
+    font-size: 1.125rem; color: var(--muted); max-width: 560px;
+    line-height: 1.8; margin-bottom: 3.5rem; font-weight: 300;
+  }
+
+  /* stat bar */
+  .stat-bar {
+    display: flex; flex-wrap: wrap; gap: 0;
+    border-top: 1px solid var(--border); padding-top: 2.5rem;
+  }
+  .stat {
+    flex: 1; min-width: 155px; padding-right: 2.5rem;
+    border-right: 1px solid var(--border);
+    margin-right: 2.5rem; margin-bottom: 1.5rem;
+  }
+  .stat:last-child { border-right: none; margin-right: 0; }
+  .stat-n {
+    font-family: var(--serif); font-size: 2.6rem; font-weight: 500;
+    color: var(--cream); line-height: 1; display: block; margin-bottom: 0.35rem;
+  }
+  .stat-label { font-size: 0.78rem; color: var(--muted); font-weight: 400; letter-spacing: 0.03em; }
+
+  /* ── SECTION HEADERS ─────────────────────────── */
+  .section-kicker {
+    font-size: 0.7rem; font-weight: 500; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--grape-light); margin-bottom: 1rem;
+  }
+  h2 {
+    font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 500; line-height: 1.15; color: var(--cream);
+    margin-bottom: 1.25rem; letter-spacing: -0.005em;
+  }
+  h2 em { font-style: italic; }
+  .section-sub { font-size: 1rem; color: var(--muted); line-height: 1.8; max-width: 600px; }
+
+  /* ── PRODUCTS ────────────────────────────────── */
+  #products { border-bottom: 1px solid var(--border); }
+  .product-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5px;
+    margin-top: 4rem;
+    border: 1px solid var(--border); border-radius: 4px; overflow: hidden;
+  }
+  .product-card {
+    background: var(--bg2); padding: 3rem;
+    border-right: 1px solid var(--border);
+    display: flex; flex-direction: column; transition: background 0.25s;
+  }
+  .product-card:last-child { border-right: none; }
+  .product-card:hover { background: var(--bg3); }
+  .product-tag {
+    display: inline-block; font-size: 0.7rem; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 0.3rem 0.7rem; border-radius: 2px; margin-bottom: 1.75rem;
+    align-self: flex-start;
+  }
+  .product-tag.live {
+    color: #7ec8a0; background: rgba(126,200,160,0.1);
+    border: 1px solid rgba(126,200,160,0.25);
+  }
+  .product-tag.preview {
+    color: var(--grape-light); background: rgba(112,60,137,0.12);
+    border: 1px solid rgba(112,60,137,0.3);
+  }
+  .product-name {
+    font-family: var(--serif); font-size: 2.2rem; font-weight: 500;
+    color: var(--cream); margin-bottom: 0.35rem; letter-spacing: -0.01em;
+  }
+  .product-tagline {
+    font-family: var(--serif); font-style: italic; font-size: 1.25rem;
+    color: var(--cream); margin-bottom: 1.5rem; line-height: 1.4;
+    padding-bottom: 1.25rem; border-bottom: 1px solid var(--border);
+  }
+  .product-desc { font-size: 0.95rem; color: var(--muted); line-height: 1.8; flex-grow: 1; margin-bottom: 1.5rem; }
+  .product-perf {
+    display: flex; align-items: baseline; gap: 1rem;
+    padding: 1.25rem 0; border-top: 1px solid var(--border);
+    margin-bottom: 1.75rem;
+  }
+  .product-perf-n {
+    font-family: var(--serif); font-size: 2.6rem; font-weight: 500;
+    color: var(--cream); line-height: 1; flex-shrink: 0;
+  }
+  .product-perf-label {
+    font-size: 0.8rem; color: var(--muted); line-height: 1.6;
+  }
+  .product-link {
+    font-size: 0.85rem; font-weight: 500; color: var(--grape-light);
+    text-decoration: none; letter-spacing: 0.02em;
+    display: inline-flex; align-items: center; gap: 0.4rem; transition: gap 0.2s;
+  }
+  .product-link:hover { gap: 0.65rem; }
+
+  /* ── MISSION ─────────────────────────────────── */
+  #mission { border-bottom: 1px solid var(--border); }
+  .mission-pillars {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+    margin-top: 4rem; background: var(--border); border-radius: 4px; overflow: hidden;
+  }
+  .pillar { background: var(--bg2); padding: 2.25rem; transition: background 0.2s; }
+  .pillar:hover { background: var(--bg3); }
+  .pillar-icon {
+    width: 36px; height: 36px; margin-bottom: 1.25rem;
+    background: rgba(112,60,137,0.12); border: 1px solid rgba(112,60,137,0.25);
+    border-radius: 2px; display: flex; align-items: center; justify-content: center;
+  }
+  .pillar-icon svg { width: 16px; height: 16px; stroke: var(--grape-light); fill: none; }
+  .pillar-title { font-family: var(--serif); font-size: 1.3rem; font-weight: 500; color: var(--cream); margin-bottom: 0.75rem; }
+  .pillar-body { font-size: 0.875rem; color: var(--muted); line-height: 1.8; }
+
+  /* ── CONSULTING ──────────────────────────────── */
+  #consulting { border-bottom: 1px solid var(--border); }
+  .consulting-layout {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+    margin-top: 3rem; align-items: start;
+  }
+  .consulting-text p { font-size: 0.95rem; color: var(--muted); line-height: 1.85; margin-bottom: 1.25rem; }
+  .logo-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;
+    margin-bottom: 0;
+  }
+  .logo-cell {
+    background: #ffffff;
+    border-radius: 6px;
+    height: 110px;
+    padding: 1.25rem 1.75rem;
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .logo-cell:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+  }
+  .logo-cell img {
+    max-height: 62px; max-width: 80%;
+    width: auto; height: auto;
+    display: block; object-fit: contain;
+    opacity: 0.9; transition: opacity 0.2s;
+  }
+  .logo-cell:hover img { opacity: 1; }
+  .client-disclaimer {
+    font-size: 0.78rem; color: var(--muted); margin-top: 1.1rem;
+    line-height: 1.65; font-style: italic;
+  }
+
+  /* ── RECOGNITION ─────────────────────────────── */
+  #recognition { border-bottom: 1px solid var(--border); }
+  .awards-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 3.5rem; }
+  .award-card {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 4px; padding: 2rem;
+    display: flex; flex-direction: column; gap: 0.75rem;
+    transition: border-color 0.25s;
+  }
+  .award-card:hover { border-color: var(--grape); }
+  .award-year { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--grape-light); }
+  .award-title { font-family: var(--serif); font-size: 1.4rem; font-weight: 500; color: var(--cream); line-height: 1.25; }
+  .award-body { font-size: 0.875rem; color: var(--muted); line-height: 1.7; }
+
+  /* ── TEAM ────────────────────────────────────── */
+  #team { border-bottom: 1px solid var(--border); }
+  .team-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px;
+    margin-top: 4rem; background: var(--border); border-radius: 4px; overflow: hidden;
+  }
+  .team-card { background: var(--bg2); padding: 2.5rem; transition: background 0.2s; display: flex; flex-direction: column; }
+  .team-card:hover { background: var(--bg3); }
+  .team-photo {
+    width: 68px; height: 68px; border-radius: 50%;
+    border: 2px solid var(--border); margin-bottom: 1.5rem;
+    object-fit: cover; display: block;
+    background: var(--bg3);
+  }
+  .team-name { font-family: var(--serif); font-size: 1.6rem; font-weight: 500; color: var(--cream); margin-bottom: 0.2rem; }
+  .team-role { font-size: 0.72rem; color: var(--grape-light); font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.25rem; }
+  .team-tagline {
+    font-family: var(--serif); font-style: italic;
+    font-size: 1.2rem; color: var(--cream); line-height: 1.45;
+    border-left: 2px solid var(--grape); padding-left: 1rem;
+    margin-bottom: 1.75rem;
+  }
+  .team-links { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: auto; }
+  .team-link {
+    font-size: 0.82rem; color: var(--muted); text-decoration: none;
+    font-weight: 400; letter-spacing: 0.03em; transition: color 0.2s;
+  }
+  .team-link:hover { color: var(--grape-light); }
+  .quarter-badge {
+    display: inline-block; font-size: 0.65rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--grape-light); background: rgba(112,60,137,0.12);
+    border: 1px solid rgba(112,60,137,0.25);
+    padding: 0.2rem 0.5rem; border-radius: 2px;
+    margin-left: 0.5rem; vertical-align: middle;
+  }
+
+  /* ── CONTACT ─────────────────────────────────── */
+  #contact { background: var(--bg2); border-bottom: 1px solid var(--border); text-align: center; }
+  #contact h2 { margin: 0 auto 1rem; }
+  .contact-sub { font-size: 1rem; color: var(--muted); margin: 0 auto 1.25rem; max-width: 480px; }
+  .contact-grape-line {
+    font-family: var(--serif); font-style: italic;
+    font-size: 1.15rem; color: var(--grape-light);
+    margin: 0 auto 2.5rem; max-width: 380px;
+    padding: 0.75rem 0;
+    border-top: 1px solid rgba(112,60,137,0.25);
+    border-bottom: 1px solid rgba(112,60,137,0.25);
+  }
+  .contact-links { display: flex; gap: 1.25rem; justify-content: center; flex-wrap: wrap; }
+  .contact-btn {
+    font-size: 0.875rem; font-weight: 500; text-decoration: none;
+    padding: 0.75rem 2rem; border-radius: 2px;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+  }
+  .contact-btn.primary { background: var(--grape); color: var(--cream); border: 1px solid var(--grape); }
+  .contact-btn.primary:hover { background: var(--grape-dark); border-color: var(--grape-dark); }
+  .contact-btn.secondary { border: 1px solid var(--border); color: var(--muted); }
+  .contact-btn.secondary:hover { border-color: var(--muted); color: var(--cream); }
+
+  /* ── FOOTER ──────────────────────────────────── */
+  footer {
+    padding: 2.5rem 3rem;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-left { font-size: 0.8rem; color: var(--muted); }
+  .footer-right { display: flex; gap: 1.5rem; }
+  .footer-right a { font-size: 0.8rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .footer-right a:hover { color: var(--cream); }
+
+  /* ── SCROLL REVEAL ───────────────────────────── */
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.6s, transform 0.6s; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ── RESPONSIVE ──────────────────────────────── */
+
+  /* Tablet: 768–900px — 2-col where 3-col is too tight */
+  @media (max-width: 900px) {
+    section { padding: 5rem 2rem; }
+    .team-grid { grid-template-columns: 1fr 1fr; }
+    .mission-pillars { grid-template-columns: 1fr 1fr; }
+    .product-grid, .consulting-layout { grid-template-columns: 1fr; }
+    .awards-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* Mobile: ≤768px */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.25rem; }
+    /* Hide nav items but keep the CTA button visible */
+    .nav-links li { display: none; }
+    .nav-links li:last-child { display: block; }
+    .nav-links { gap: 0; }
+
+    section { padding: 4rem 1.25rem; }
+    #hero { padding: 7.5rem 1.25rem 4rem; }
+
+    h1 { font-size: clamp(1.9rem, 7.5vw, 2.8rem); }
+
+    .hero-sub { font-size: 1rem; }
+
+    .stat-bar {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      row-gap: 2rem; column-gap: 0;
+    }
+    .stat {
+      padding-right: 1rem; margin-right: 0;
+      border-right: none; min-width: 0;
+    }
+    .stat:nth-child(odd) {
+      border-right: 1px solid var(--border);
+      padding-right: 1.25rem;
+    }
+    .stat-n { font-size: 2rem; }
+
+    .team-grid { grid-template-columns: 1fr; }
+    .mission-pillars { grid-template-columns: 1fr; }
+    .awards-grid { grid-template-columns: 1fr; }
+
+    .team-card { padding: 1.75rem; }
+    .team-tagline { font-size: 1.05rem; }
+
+    .product-stats { flex-wrap: wrap; gap: 1.25rem; }
+    .product-card { padding: 2rem 1.5rem; }
+
+    .logo-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .logo-cell { height: 90px; padding: 1rem 1.25rem; }
+    .logo-cell img { max-height: 46px; }
+
+    .contact-links { flex-direction: column; align-items: center; }
+    .contact-btn { width: 100%; max-width: 320px; text-align: center; }
+
+    footer { flex-direction: column; gap: 0.75rem; padding: 2rem 1.25rem; }
+  }
+
+  /* Small mobile: ≤420px */
+  @media (max-width: 420px) {
+    h1 { font-size: clamp(1.75rem, 7vw, 2rem); }
+    .stat-n { font-size: 1.75rem; }
+    .product-name { font-size: 1.8rem; }
+    .team-name { font-size: 1.4rem; }
+  }
+</style>
 </head>
-
 <body>
 
-<header class="container">
-	<div class="row">
-		<div class="col-md-8 col-md-offset-1">
-			<a href="index.html">
-				<img src="images/graype.svg" alt="" id="logo"/>
-				<img src="images/logo_invert.png" alt="Graype systems" id="logotype"/>
-			</a>
-			<h2>is passionate about<br/>Quantitative Analysis &amp; Decision Science</h2>
-			<p>Our mission is to bring open source cutting-edge QUADS tools for everyone.</p>
-		</div>
-	</div>
-</header>
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <img class="nav-logo-icon"
+         src="https://raw.githubusercontent.com/GR4YPE/gr4ype.github.io/master/images/graype.svg"
+         alt="Graype">
+    <img class="nav-logo-wordmark"
+         src="https://raw.githubusercontent.com/GR4YPE/gr4ype.github.io/master/images/logo_invert.png"
+         alt="GRAYPE SYSTEMS">
+  </a>
+  <ul class="nav-links">
+    <li><a href="#products">Products</a></li>
+    <li><a href="#consulting">Consulting</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="https://github.com/winkjs" target="_blank">GitHub</a></li>
+    <li><a href="#contact" class="nav-cta">Get in touch</a></li>
+  </ul>
+</nav>
 
-<div class="graybg"><main class="container"	>
-	<div class="row">
-		<section class="col-md-8 col-md-offset-1 products">
-			<h1>
-				We make decision science<br/>
-				 accessible to all kinds of businesses
-			</h1>
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <p class="hero-kicker">GRAYPE SYSTEMS &nbsp;·&nbsp; NOIDA, INDIA</p>
+    <h1>2¼ people.<br><em>Disproportionate</em> impact.</h1>
+    <p class="hero-sub">
+      We build rigorous, open-source decision science tools — funded by
+      selective consulting and driven by an obsession with getting
+      engineering, testing, and security right.
+    </p>
+    <div class="stat-bar">
+      <div class="stat">
+        <span class="stat-n">~3M</span>
+        <span class="stat-label">npm downloads / year</span>
+      </div>
+      <div class="stat">
+        <span class="stat-n">2,750+</span>
+        <span class="stat-label">dependent projects worldwide</span>
+      </div>
+      <div class="stat">
+        <span class="stat-n">#3</span>
+        <span class="stat-label">OpenSSF security adherence, JS ecosystem</span>
+      </div>
+      <div class="stat">
+        <span class="stat-n">₹0</span>
+        <span class="stat-label">venture capital raised</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-			<div class="row">
-				<div class="col-md-6">
-          <a href="http://winkjs.org/">
-					  <img src="images/wink.png" alt="Wink"/>
-          </a>
-					<p>A growing family of high quality <a href="https://github.com/winkjs">open source</a> packages for Statistics, Natural Language Processing and Machine Learning in NodeJS.</p>
-				</div>
-				<div class="col-md-6">
-          <a href="#">
-					  <img src="images/decisively.png" alt="Decisively" class="decisively"/>
-          </a>
-					<p>Our dream framework that will simplify data-driven decision making for non decision science professionals.</p>
-				</div>
-			</div>
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="container">
+    <p class="section-kicker reveal">Our products</p>
+    <h2 class="reveal">Tools we <em>dreamed</em> into existence</h2>
+    <p class="section-sub reveal">Two focused products. Both open-source. Neither designed by committee.</p>
 
-			<p>Foregrounding work on these tools have been presented in international conferences such as the 24th <a href="/pdf/decisively.pdf">Subjective Probability, Utility, & Decision Making (SPUDM) Conference</a> in Spain, and the 22nd <a href="http://ieeexplore.ieee.org/document/6912278/?reload=true&tp=&arnumber=6912278">IEEE Requirements Engineering Conference</a> in Sweden.</p>
-		</section>
-</main></div>
-<main class="container"	>
-		<section class="col-md-8 col-md-offset-1 customers">
-			<h1 class="customers">Our valuable customers</h1>
-      <p>In the last decade, we have helped organizations like IBM, Airtel, PVR Cinemas, HealthScion, IFFCO-Kisan and OneAssist.</p>
-			<div class="row">
-				<div class="col-md-4">
-					<img src="images/logos/airtel.png" alt="airtel"/>
-				</div>
-				<div class="col-md-4">
-					<img src="images/logos/pvr.png" alt="PVR"/>
-				</div>
-        <div class="col-md-4">
-          <img src="images/logos/health-scion.png" alt="Health Scion"/>
+    <div class="product-grid reveal">
+      <div class="product-card">
+        <span class="product-tag live">Live · Open Source</span>
+        <div class="product-name">winkNLP</div>
+        <div class="product-tagline">Developer-friendly Natural Language Processing.</div>
+        <p class="product-desc">
+          A high-performance NLP pipeline — tokenization, sentence boundary
+          detection, negation handling, sentiment analysis, POS tagging, NER,
+          and custom entities — in a single zero-dependency package with full
+          TypeScript support. Runs identically in Node.js and browsers.
+        </p>
+        <div class="product-perf">
+          <span class="product-perf-n">2M+</span>
+          <span class="product-perf-label">tokens / second<br>MacBook Pro M4 · Chrome</span>
         </div>
-			</div>
-			<div class="row">
-				<div class="col-md-4">
-					<img src="images/logos/iffco-kisan.png" alt="IFFCO Kisan"/>
-				</div>
-				<div class="col-md-4">
-					<img src="images/logos/one-assist.png" alt="One Assist"/>
-				</div>
-        <div class="col-md-4">
-					<img src="images/logos/ibm.png" alt="IBM"/>
-				</div>
-			</div>
-		</section>
-</main>
-<div class="graybg"><main class="container"	>
-		<section class="col-md-8 col-md-offset-1 team">
-			<h1>If you're looking for help,<br/>our team is ready to lend a hand</h1>
+        <a href="https://winkjs.org/wink-nlp/getting-started.html" target="_blank" class="product-link">Dive in →</a>
+      </div>
 
-      <img src="images/prtk.gif" alt="Prateek"/>
-      <p></p><p>
-        <strong>Prateek </strong>
-        (<a href="https://twitter.com/prtksxna">@prtksxna</a>)
-        <em>Design &amp; Development</em>
-        <br/>
-        Interested in making games and music.<br/><br/>
-      </p>
+      <div class="product-card">
+        <span class="product-tag preview">Active Development</span>
+        <div class="product-name">winkComposer</div>
+        <div class="product-tagline">Composable Streaming Intelligence.</div>
+        <p class="product-desc">
+          From IIoT streams to actionable insight — in real time. Composable
+          blocks for signal conditioning, statistics, anomaly detection, and
+          flow control — from Kalman filters to spiking neural networks.
+          Express what you want, not how to build it. AI-native via MCP Server.
+          Purpose-built for SMBs and MSMEs. Runs identically from edge to cloud.
+        </p>
+        <div class="product-perf">
+          <span class="product-perf-n">1M+</span>
+          <span class="product-perf-label">messages / second<br>same code · edge to cloud</span>
+        </div>
+        <a href="https://composer.winkjs.org" target="_blank" class="product-link">Dive in →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
-			<img src="images/rachna.gif" alt="Rachna"/>
-			<p></p><p>
-				<strong>Rachna</strong> (<a href="https://twitter.com/R4CHN4/">@R4CHN4</a>)
-				<em>Applications Engineering &amp; Data Science</em>
-				<br/>
-				Intrigued by functional programming.<br/><br/>
-			</p>
+<!-- MISSION -->
+<section id="mission">
+  <div class="container">
+    <p class="section-kicker reveal">Why we exist</p>
+    <h2 class="reveal">Powerful tools<br>belong in the <em>open</em></h2>
+    <p class="section-sub reveal">
+      Rigorous decision science has long been locked behind enterprise contracts,
+      academic paywalls, and consulting retainers. We are changing that —
+      one carefully crafted open-source package at a time.
+    </p>
 
+    <div class="mission-pillars">
+      <div class="pillar reveal">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div class="pillar-title">Open source as mission</div>
+        <p class="pillar-body">
+          Every Graype package is open because rigorous tools should be
+          freely available to anyone willing to use them well.
+          No paywall. No enterprise tier.
+        </p>
+      </div>
+      <div class="pillar reveal">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        </div>
+        <div class="pillar-title">First principles, always</div>
+        <p class="pillar-body">
+          We do not reach for a library when an algorithm will do. We do not
+          add a dependency when a proof will do. Precision over convenience,
+          every time.
+        </p>
+      </div>
+      <div class="pillar reveal">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="pillar-title">Thinking in decades</div>
+        <p class="pillar-body">
+          No exit strategy. No VC timeline. We are building tools we intend
+          to maintain and improve for as long as they remain useful — which
+          is to say, for a very long time.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
-			<img src="images/sks.gif" alt="Sanjaya"/>
-			<p></p><p>
-				<strong>Sanjaya </strong>
-				(<a href="https://twitter.com/sanjayaksaxena">@sanjayaksaxena</a>)
-				<em>Maths, Algorithms & Coding</em>
-				<br/>
-				Quantum physics &amp; relativity fascinates him.
-			</p>
+<!-- CONSULTING -->
+<section id="consulting">
+  <div class="container">
+    <p class="section-kicker reveal">How we sustain the work</p>
+    <h2 class="reveal">Niche consulting.<br><em>Serious</em> clients.</h2>
 
+    <div class="consulting-layout">
+      <div class="consulting-text reveal">
+        <p>
+          Open-source work requires economic oxygen. Ours comes from selective,
+          high-depth consulting engagements with organisations that need genuine
+          quantitative expertise — not headcount.
+        </p>
+        <p>
+          The arrangement is honest: consulting revenue funds our OSS work.
+          Our OSS work is the proof of capability that earns the consulting
+          engagements. A flywheel we have been spinning for over a decade.
+        </p>
+        <p>
+          We work with a small number of clients at any time. We say no often.
+          We stay long enough to do the work properly.
+        </p>
+      </div>
 
-			<p id="contact">
-				We're open for business,
-				<a href="mailto:contactus@graype.in">contactus@graype.in</a>!
-			</p>
-		</section>
-	</div>
-</main></div>
+      <div class="reveal">
+        <div class="logo-grid">
+          <div class="logo-cell">
+            <img src="https://raw.githubusercontent.com/GR4YPE/gr4ype.github.io/master/images/logos/ibm.png" alt="IBM">
+          </div>
+          <div class="logo-cell">
+            <img src="https://raw.githubusercontent.com/GR4YPE/gr4ype.github.io/master/images/logos/airtel.png" alt="Airtel">
+          </div>
+          <div class="logo-cell">
+            <img src="https://raw.githubusercontent.com/GR4YPE/gr4ype.github.io/master/images/logos/pvr.png" alt="PVR Cinemas">
+          </div>
+          <div class="logo-cell">
+            <img src="https://raw.githubusercontent.com/GR4YPE/gr4ype.github.io/master/images/logos/iffco-kisan.png" alt="IFFCO Kisan">
+          </div>
+        </div>
+        <p class="client-disclaimer">
+          All trademarks and logos displayed here belong to their respective owners.
+          Their inclusion indicates a past client relationship, not current endorsement.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
+<!-- RECOGNITION -->
+<section id="recognition">
+  <div class="container">
+    <p class="section-kicker reveal">Recognition</p>
+    <h2 class="reveal">The work <em>speaks</em></h2>
+
+    <div class="awards-grid">
+      <div class="award-card reveal">
+        <span class="award-year">2026</span>
+        <div class="award-title">NASSCOM Makers of India Honor</div>
+        <p class="award-body">
+          Individual recognition in the NASSCOM Makers compendium for
+          sustained contribution to India's technology ecosystem through
+          open-source decision science tooling.
+        </p>
+      </div>
+      <div class="award-card reveal">
+        <span class="award-year">2024</span>
+        <div class="award-title">NASSCOM AI Game Changer Award</div>
+        <p class="award-body">
+          Awarded for winkNLP — recognising its impact in making
+          high-performance natural language processing accessible to the
+          global JavaScript developer community.
+        </p>
+      </div>
+      <div class="award-card reveal">
+        <span class="award-year">Conference · Spain</span>
+        <div class="award-title">SPUDM — Subjective Probability, Utility &amp; Decision Making</div>
+        <p class="award-body">
+          Presented at the 24th international SPUDM conference — one of the
+          premier venues for Bayesian reasoning and decision science research.
+        </p>
+      </div>
+      <div class="award-card reveal">
+        <span class="award-year">Conference · Sweden</span>
+        <div class="award-title">IEEE Requirements Engineering Conference</div>
+        <p class="award-body">
+          Published at the 22nd IEEE RE Conference — peer-reviewed research
+          bridging formal requirements analysis with probabilistic
+          decision-making frameworks.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="container">
+    <p class="section-kicker reveal">The studio</p>
+    <h2 class="reveal">2¼ people who mean it</h2>
+    <p class="section-sub reveal">
+      Small by design. No plans to become a consultancy, a startup,
+      or anything other than a tightly run studio that ships quality work.
+    </p>
+
+    <div class="team-grid">
+
+      <!-- Sanjaya -->
+      <div class="team-card reveal">
+        <img class="team-photo"
+             src="https://raw.githubusercontent.com/GR4YPE/gr4ype.github.io/master/images/sks.gif"
+             alt="Sanjaya">
+        <div class="team-name">Sanjaya</div>
+        <div class="team-role">Maths, Algorithms &amp; Engineering</div>
+        <div class="team-tagline">"Engineering discipline and mathematical rigour are not optional — they are the work."</div>
+        <div class="team-links">
+          <a href="https://www.linkedin.com/in/sanjayaksaxena/" target="_blank" class="team-link">LinkedIn →</a>
+          <a href="https://github.com/sanjayaksaxena" target="_blank" class="team-link">GitHub →</a>
+        </div>
+      </div>
+
+      <!-- Rachna -->
+      <div class="team-card reveal">
+        <img class="team-photo"
+             src="https://raw.githubusercontent.com/GR4YPE/gr4ype.github.io/master/images/rachna.gif"
+             alt="Rachna">
+        <div class="team-name">Rachna</div>
+        <div class="team-role">Applications Engineering &amp; Data Science</div>
+        <div class="team-tagline">"The engineering counterweight — where theory meets production."</div>
+        <div class="team-links">
+          <a href="https://www.linkedin.com/in/rachna-chakraborty-8b673617/" target="_blank" class="team-link">LinkedIn →</a>
+          <a href="https://github.com/rachnachakraborty" target="_blank" class="team-link">GitHub →</a>
+        </div>
+      </div>
+
+      <!-- Prateek -->
+      <div class="team-card reveal">
+        <img class="team-photo"
+             src="https://raw.githubusercontent.com/GR4YPE/gr4ype.github.io/master/images/prtk.gif"
+             alt="Prateek">
+        <div class="team-name">Prateek</div>
+        <div class="team-role">Design &amp; Development</div>
+        <div class="team-tagline">"Deeply into game development. And music. Occasionally both at once."</div>
+        <div class="team-links">
+          <a href="https://www.linkedin.com/in/prtksxna/" target="_blank" class="team-link">LinkedIn →</a>
+          <a href="https://github.com/prtksxna" target="_blank" class="team-link">GitHub →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <p class="section-kicker">Get in touch</p>
+    <h2>Open for the right <em>conversations</em></h2>
+    <p class="contact-sub">
+      Consulting enquiries, collaboration ideas, or just a thoughtful
+      conversation about the work — we read everything.
+    </p>
+    <p class="contact-grape-line">
+      Proud sponsors of the 🍇 emoji.
+    </p>
+    <div class="contact-links">
+      <a id="contact-email" href="#" class="contact-btn primary">contactus&#64;graype.in</a>
+      <a href="https://github.com/winkjs" target="_blank" class="contact-btn secondary">GitHub / winkjs</a>
+      <a href="http://winkjs.org" target="_blank" class="contact-btn secondary">winkjs.org</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
-	<div class="container">
-		<div class="row">
-			<section class="col-md-10 col-md-offset-1">
-				<p>
-					&copy; GRAYPE SYSTEMS Pvt. Ltd.
-					<em>Proud <a href="https://twitter.com/unicode/status/837710612050255874">sponsors</a> of the &#x1F347; emoji.</em>
-				</p>
-			</section>
-      <section class="col-md-10 col-md-offset-1">
-				Except for the <em>graype</em> and <em>wink</em> logos, all logos on this page belong to their respective owners.
-        <br><br><br>
-			</section>
-		</div>
-	</div>
+  <div class="footer-left">
+    &copy; 2014&ndash;2026 Graype Systems Private Limited &nbsp;&middot;&nbsp; Noida, India
+  </div>
+  <div class="footer-right">
+    <a href="https://github.com/winkjs" target="_blank">GitHub</a>
+    <a href="http://winkjs.org" target="_blank">winkjs.org</a>
+    <a id="footer-email" href="#">Contact</a>
+  </div>
 </footer>
 
+<script>
+  (function() {
+    var e = atob('Y29udGFjdHVzQGdyYXlwZS5pbg==');
+    var m = ['mai','lto:',e].join('');
+    var c = document.getElementById('contact-email');
+    var f = document.getElementById('footer-email');
+    if (c) c.href = m;
+    if (f) f.href = m;
+  })();
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0 });
+  document.querySelectorAll('.reveal').forEach(function(el) { obs.observe(el); });
+</script>
 </body>
 </html>
